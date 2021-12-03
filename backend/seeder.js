@@ -36,10 +36,10 @@ const clearData = async () => {
     await orderModel.deleteMany()
 
     console.log("clearData success")
-    process.exit(1)
+    process.exit()
   } catch (error) {
     console.log("Error: ", error)
-    process.exit(1)
+    process.exit()
   }
 }
 
