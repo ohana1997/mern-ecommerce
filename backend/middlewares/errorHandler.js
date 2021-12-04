@@ -1,7 +1,7 @@
 const notFound = (req, res, next) => {
   console.log("notFound!")
   const err = new Error("Not found API !")
-  res.jsonError({
+  res.json({
     code: 404,
     message: "Page Not Found",
   })
@@ -9,11 +9,12 @@ const notFound = (req, res, next) => {
 }
 
 const errorHandler = (err, req, res, next) => {
-  console.log("error handler catched !")
-  res.status(404).json({
-    status: res.statusCode || 500,
-    message: "Something went wrong",
-    error_msg: err.message,
+  // console.log("error handler catched !", res.statusCode)
+  console.log("error log!", err)
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode
+  res.status(statusCode)
+  res.json({
+    message: err.message,
     stack: process.env.NODE_ENV === "DEVELOPMENT" && err.stack,
   })
 }

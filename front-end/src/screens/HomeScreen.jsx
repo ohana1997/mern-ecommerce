@@ -5,6 +5,8 @@ import Product from "../components/Product"
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
 import { getListProduct } from "../actions/productActions"
+import Message from "../components/Message"
+import Loader from "../components/Loader"
 
 const HomeScreen = () => {
   const dispatch = useDispatch()
@@ -13,18 +15,27 @@ const HomeScreen = () => {
     dispatch(getListProduct())
   }, [dispatch])
 
-  const products = []
+  const productList = useSelector((state) => state.products)
+  const { error, isLoading } = productList
 
+  const products = []
   return (
     <div>
       <h2>Products</h2>
-      <Row>
-        {products.map((product) => (
-          <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-            <Product product={product} />
-          </Col>
-        ))}
-      </Row>
+
+      {isLoading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : (
+        <Row>
+          {products.map((product) => (
+            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+              <Product product={product} />
+            </Col>
+          ))}
+        </Row>
+      )}
     </div>
   )
 }
