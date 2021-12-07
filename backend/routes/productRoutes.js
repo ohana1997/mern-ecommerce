@@ -6,8 +6,6 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const allProducts = await productModel.find()
-    res.status(200)
-    throw new Error("Stop!")
     res.json(allProducts)
   })
 )
