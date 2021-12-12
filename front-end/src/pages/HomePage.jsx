@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import { Row, Col } from "react-bootstrap"
 // import products from "../products"
 import Product from "../components/Product"
-import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
 import { getListProduct } from "../actions/productActions"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
 
-const HomeScreen = () => {
+const HomePage = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -39,4 +38,4 @@ const HomeScreen = () => {
   )
 }
 
-export default HomeScreen
+export default HomePage
