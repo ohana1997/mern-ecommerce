@@ -11,7 +11,7 @@ export const getListProduct = () => async (dispatch) => {
   try {
     dispatch({ type: productTypes.GET_PRODUCT_LIST })
 
-    const { data } = await axios.get("api/products")
+    const { data } = await axios.get("/api/products")
     if (data) {
       dispatch({ type: productTypes.GET_PRODUCT_LIST_SUCCESS, payload: data })
     }
@@ -23,5 +23,27 @@ export const getListProduct = () => async (dispatch) => {
 
     console.log("error.response---", error.response, msg_err)
     dispatch({ type: productTypes.GET_PRODUCT_LIST_FAIL, payload: msg_err })
+  }
+}
+
+export const getListProductDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: productTypes.GET_PRODUCT_DETAILS })
+    const { data } = await axios.get(`/api/products/${id}`)
+    console.log("data", data)
+    if (data) {
+      dispatch({
+        type: productTypes.GET_PRODUCT_DETAILS_SUCCESS,
+        payload: data,
+      })
+    }
+  } catch (error) {
+    const msg_err =
+      error.response && error.response.data?.message
+        ? error.response.data.message
+        : error.message
+
+    console.log("error.response---", error.response, msg_err)
+    dispatch({ type: productTypes.GET_PRODUCT_DETAILS_FAIL, payload: msg_err })
   }
 }

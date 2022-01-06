@@ -8,7 +8,7 @@ const Header = () => {
       <Navbar
         bg="light"
         expand="lg"
-        // className="navbar navbar-expand-lg navbar-dark bg-dark"
+        className="navbar navbar-expand-lg navbar-dark bg-dark"
       >
         <Container>
           <Link to="/">

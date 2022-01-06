@@ -14,7 +14,7 @@ const HomePage = () => {
     dispatch(getListProduct())
   }, [dispatch])
 
-  const productList = useSelector((state) => state.products)
+  const productList = useSelector((state) => state.productList)
   const { error, isLoading, products } = productList
 
   return (
