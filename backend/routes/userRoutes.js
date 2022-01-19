@@ -4,11 +4,19 @@ const {
   authUser,
   getProfile,
   registerUser,
+  getListUsers,
+  deleteUser,
+  getUserById,
+  updateUser,
 } = require("../controller/userController")
-const authHandler = require("../middlewares/authHandler")
-
+const { authHandler, isAdmin } = require("../middlewares/authHandler")
 router.post("/register", registerUser)
 router.post("/login", authUser)
-router.post("/profile", authHandler, getProfile)
+router.post("/:id", authHandler, getProfile)
+// admin route
+router.get("/listusers", authHandler, isAdmin, getListUsers)
+router.delete("/:id", authHandler, isAdmin, deleteUser)
+router.get("/:id", authHandler, isAdmin, getUserById)
+router.put("/:id", authHandler, isAdmin, updateUser)
 
 module.exports = router

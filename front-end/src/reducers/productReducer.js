@@ -1,9 +1,3 @@
-// import {
-//   GET_PRODUCT_LIST,
-//   GET_PRODUCT_LIST_SUCCESS,
-//   GET_PRODUCT_LIST_FAIL,
-// } from "../constants/productConstant"
-
 import { productTypes } from "../constants"
 const initialState = { products: [] }
 const initialStateDetails = { product: { review: [] } }

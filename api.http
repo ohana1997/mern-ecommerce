@@ -14,7 +14,7 @@ POST http://localhost:5000/api/user/login
 content-type: application/json
 
 {
-    "email":"nguyendainam197@gmail.com",
+    "email":"nguyendainam19711@gmail.com",
     "password": "nguyendainam"
 }
 
@@ -24,12 +24,14 @@ POST http://localhost:5000/api/user/register
 content-type: application/json
 
 {
-    "email":"nguyendainam1971@gmail.com",
+    "email":"nguyendainam19711@gmail.com",
     "password": "nguyendainam",
-    "name": "Nam"
+    "name" : "Nam"
+ 
 }
 
 
 ###
-POST http://localhost:5000/api/user/test
-content-type: application/json
+POST http://localhost:5000/api/user/profile
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWU3OTNlNTE5ZDdlMTRjZmI1YjI3YmEiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjQyNTY2OTQ3LCJleHAiOjE2NDI1Njc1NDd9.22lVPpTV0P4bbdcKCTTRlkxXp0ppgdGL4RF6n30f6F2
+
