@@ -15,7 +15,7 @@ function App() {
         <Container>
           <Route exact path="/" component={HomePage} />
           <Route path="/product/:id" component={ProductPage} />
-          <Route path="/cart/:id" component={CartPage} />
+          <Route path="/cart/:id?" component={CartPage} />
         </Container>
       </main>
       <Footer />

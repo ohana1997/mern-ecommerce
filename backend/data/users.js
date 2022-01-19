@@ -1,20 +1,26 @@
 const cryptojs = require("crypto-js")
+const bcrypt = require("bcrypt")
+const saltRounds = 10
+
+function hashPassword(password) {
+  return bcrypt.hashSync(password, saltRounds)
+}
 const users = [
   {
     name: "ADMIN",
     email: "admin@example.com",
-    password: cryptojs.MD5("admin@123"),
+    password: hashPassword("admin@123"),
     isAdmin: true,
   },
   {
     name: "Nam",
-    email: "Nam@example.com",
-    password: cryptojs.MD5("Nam@123"),
+    email: "nguyendainam197@gmail.com",
+    password: hashPassword("nguyendainam"),
   },
   {
     name: "Nguyen",
     email: "nguyen@example.com",
-    password: cryptojs.MD5("nguyen@123"),
+    password: hashPassword("nguyen@123"),
   },
 ]
 

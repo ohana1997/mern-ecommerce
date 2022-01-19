@@ -5,24 +5,33 @@ const products = require("./data/products")
 const dotenv = require("dotenv")
 const mongoose = require("mongoose")
 const productRoutes = require("./routes/productRoutes")
+const userRoutes = require("./routes/userRoutes")
 const errorMiddlewares = require("./middlewares/errorHandler")
+const compression = require("compression")
+const connectDb = require("./config/db")
+connectDb().catch((error) => console.error(error))
 dotenv.config()
 
 app.get("/", (req, res) => {
   res.send("Hello World!")
 })
 
+//MiddleWare
+app.use(express.json())
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+)
+app.use(compression())
+
 app.use("/api/products", productRoutes)
-
-app.use(errorMiddlewares.notFound)
-
-app.use(errorMiddlewares.errorHandler)
+app.use("/api/user", userRoutes)
 
 app.listen(PORT, () => {
   console.log(
     `Server is running in ${process.env.NODE_ENV} and listening at http://localhost:${PORT}`
   )
 })
-
-const connectDb = require("./config/db")
-connectDb().catch((error) => console.error(error))
+app.use(errorMiddlewares.notFound)
+app.use(errorMiddlewares.errorHandler)

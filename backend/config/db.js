@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const mongoUri = "mongodb://localhost:27017/mern_shopee"
+// const mongoUri = "mongodb://localhost:27017/testdb"
 
 const connectDb = async () => {
   try {

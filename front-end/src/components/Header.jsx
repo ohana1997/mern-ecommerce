@@ -11,9 +11,9 @@ const Header = () => {
         className="navbar navbar-expand-lg navbar-dark bg-dark"
       >
         <Container>
-          <Link to="/">
+          <LinkContainer to="/">
             <Navbar.Brand className="fs-2">Mern Shopee</Navbar.Brand>
-          </Link>
+          </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">

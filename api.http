@@ -1,9 +1,35 @@
+
+
 GET http://localhost:5000/api/product HTTP/1.1
-
+###
 POST  http://localhost:5000/api/products/ HTTP/1.1
-
+###
 GET http://localhost:5000/api/products/61a76ec4cc478291dd4999b1 HTTP/1.1
 
 
 content-type: application/json
+###
 
+POST http://localhost:5000/api/user/login
+content-type: application/json
+
+{
+    "email":"nguyendainam197@gmail.com",
+    "password": "nguyendainam"
+}
+
+
+###
+POST http://localhost:5000/api/user/register
+content-type: application/json
+
+{
+    "email":"nguyendainam1971@gmail.com",
+    "password": "nguyendainam",
+    "name": "Nam"
+}
+
+
+###
+POST http://localhost:5000/api/user/test
+content-type: application/json

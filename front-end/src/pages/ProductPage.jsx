@@ -6,16 +6,29 @@ import { useDispatch, useSelector } from "react-redux"
 import { getListProductDetails } from "../actions/productActions"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
+import { addToCart } from "../actions/cartActions"
+// import axios from "axios"
 
 const ProductPage = ({ match, history }) => {
+  const productId = match.params.id
+  const [qty, setQty] = useState(1)
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     const { data } = await axios.get(`/api/products/${productId}`)
+  //     setProduct(data)
+  //   }
+  //   fetchProduct()
+  // }, [productId])
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getListProductDetails(match.params.id))
-  }, [dispatch, match])
+    dispatch(getListProductDetails(productId))
+  }, [dispatch, productId])
 
-  // const addToCartHandler = () => {
-  //   history.push(`/cart/${match.params.id}?qty=${qty}`)
-  // }
+  const addToCartHandler = () => {
+    console.log("qty-add", qty)
+    dispatch(addToCart(productId, qty))
+    history.push(`/cart/${match.params.id}?qty=${qty}`)
+  }
   const productDetails = useSelector((state) => state.productDetails)
   const { error, isLoading, product } = productDetails
   return (
@@ -76,8 +89,8 @@ const ProductPage = ({ match, history }) => {
                       <Col>
                         <Form.Control
                           as="select"
-                          // value={qty}
-                          // onChange={(e) => setQty(e.target.value)}
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
                         >
                           {[...Array(product.countInstock).keys()].map(
                             (item, idx) => (
@@ -96,7 +109,7 @@ const ProductPage = ({ match, history }) => {
                     className="btn btn-primary"
                     type="button"
                     disabled={product.countInstock === 0}
-                    // onClick={addToCartHandler}
+                    onClick={addToCartHandler}
                   >
                     Add To Cart
                   </Button>

@@ -16,7 +16,6 @@ const HomePage = () => {
 
   const productList = useSelector((state) => state.productList)
   const { error, isLoading, products } = productList
-
   return (
     <div>
       <h2>Products</h2>
