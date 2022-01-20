@@ -4,13 +4,13 @@ import { Table, Button, Row, Col } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
-import Paginate from "../components/Paginate"
+// import Paginate from "../components/Paginate"
+import { productTypes } from "../constants"
 import {
-  listProducts,
+  getListProduct,
   deleteProduct,
   createProduct,
 } from "../actions/productActions"
-import { PRODUCT_CREATE_RESET } from "../constants/productConstants"
 
 const ProductListPage = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1
@@ -39,48 +39,45 @@ const ProductListPage = ({ history, match }) => {
   const { userInfo } = userLogin
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts())
-    } else {
+    dispatch({ type: productTypes.PRODUCT_CREATE_RESET })
+
+    if (!userInfo || !userInfo.isAdmin) {
       history.push("/login")
     }
-    // dispatch({ type: PRODUCT_CREATE_RESET })
 
-    // if (!userInfo || !userInfo.isAdmin) {
-    //   history.push("/login")
-    // }
-
-    // if (successCreate) {
-    //   history.push(`/admin/product/${createdProduct._id}/edit`)
-    // } else {
-    //   dispatch(listProducts("", pageNumber))
-    // }
-  }, [dispatch, history, userInfo])
+    if (successCreate) {
+      history.push(`/admin/product/${createdProduct._id}/edit`)
+    } else {
+      dispatch(getListProduct())
+    }
+  }, [dispatch, userInfo, successDelete, successCreate])
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure")) {
-      //   dispatch(deleteProduct(id))
+      dispatch(deleteProduct(id))
     }
   }
 
   const createProductHandler = () => {
+    console.log("zo")
     dispatch(createProduct())
   }
 
   return (
     <>
-      <Row className="align-items-center">
+      <Row className="align-items-end">
         <Col>
           <h1>Products</h1>
         </Col>
         <Col className="text-right">
           <Button className="my-3" onClick={createProductHandler}>
-            <i className="fas fa-plus"></i> Create Product
+            <i className="fas fa-plus"></i> Create Sample Product
           </Button>
         </Col>
       </Row>
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant="danger">{errorDelete}</Message>}
+
       {loadingCreate && <Loader />}
       {errorCreate && <Message variant="danger">{errorCreate}</Message>}
       {loading ? (
@@ -126,7 +123,7 @@ const ProductListPage = ({ history, match }) => {
               ))}
             </tbody>
           </Table>
-          <Paginate pages={pages} page={page} isAdmin={true} />
+          {/* <Paginate pages={pages} page={page} isAdmin={true} /> */}
         </>
       )}
     </>

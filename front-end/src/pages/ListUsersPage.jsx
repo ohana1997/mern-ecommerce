@@ -10,7 +10,6 @@ const UserListPage = ({ history }) => {
   const dispatch = useDispatch()
 
   const userList = useSelector((state) => state.userList)
-  console.log("userList: ", userList)
   const { loading, error, users } = userList
 
   const userLogin = useSelector((state) => state.userLogin)

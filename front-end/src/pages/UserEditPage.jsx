@@ -43,17 +43,17 @@ const UserEditPage = ({ match, history }) => {
         setIsAdmin(user.isAdmin)
       }
     }
-    if (userInfo && userInfo.isAdmin) {
-      if (!user?.name || user?._id !== userId) {
-        dispatch(getUserDetails(userId))
-      } else {
-        setName(user.name)
-        setEmail(user.email)
-        setIsAdmin(user.isAdmin)
-      }
-    } else {
-      history.push("/login")
-    }
+    // if (userInfo && userInfo.isAdmin) {
+    //   if (!user?.name || user?._id !== userId) {
+    //     dispatch(getUserDetails(userId))
+    //   } else {
+    //     setName(user.name)
+    //     setEmail(user.email)
+    //     setIsAdmin(user.isAdmin)
+    //   }
+    // } else {
+    //   history.push("/login")
+    // }
   }, [dispatch, history, userId, user, successUpdate])
 
   const submitHandler = (e) => {

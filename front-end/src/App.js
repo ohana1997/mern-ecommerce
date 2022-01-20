@@ -10,6 +10,8 @@ import RegisterPage from "./pages/RegisterPage"
 import ProfilePage from "./pages/ProfilePage"
 import UserListPage from "./pages/ListUsersPage"
 import UserEditPage from "./pages/UserEditPage"
+import ProductListPage from "./pages/ProductListPage"
+import ProductEditPage from "./pages/ProductEditPage"
 import { BrowserRouter as Router, Route } from "react-router-dom"
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="/profile" component={ProfilePage} />
           <Route path="/admin/listuser" component={UserListPage} />
           <Route path="/admin/user/:id/edit" component={UserEditPage} />
+          <Route path="/admin/productlist" component={ProductListPage} />
+          <Route path="/admin/product/:id/edit" component={ProductEditPage} />
         </Container>
       </main>
       <Footer />
